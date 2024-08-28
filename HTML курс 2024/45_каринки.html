@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пляжная картина</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #canvas {
+            position: relative;
+            display: inline-block;
+        }
+        .item {
+            position: absolute;
+            cursor: pointer;
+            opacity: 0.7;
+            display: none; /* Скрываем элементы по умолчанию */
+        }
+        .item:hover {
+            outline: 2px dashed SaddleBrown;
+        }
+        #counter {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Найди предметы на пляже!</h1>
+    <div id="canvas">
+        <img src="https://s1.1zoom.ru/big3/243/Mauritius_Tropics_Coast_472439.jpg" alt="Пляж" width="600">
+        <img src="https://cs2.livemaster.ru/storage/2f/d8/17171f4ad5aacb22554c2f0e61x8--odezhda-shuba-iz-pestsa-elena.jpg" class="item" style="top: 30px; left: 150px; width: 50px;" alt="Шуба">
+        <img src="https://avatars.dzeninfra.ru/get-zen_doc/101122/pub_5cc33e9472f48900b3ff8c77_5cc33fa055489700b33e670b/scale_1200" class="item" style="top: 200px; left: 300px; width: 50px;" alt="Кабриолет Аурус">
+        <img src="https://i.artfile.ru/1920x1200_650080_[www.ArtFile.ru].jpg" class="item" style="top: 300px; left: 400px; width: 50px;" alt="Яхта">
+        <!-- Добавьте больше предметов здесь -->
+    </div>
+    <div id="counter">Осталось предметов: <span id="remaining">3</span></div>
+
+    <script>
+        const items = document.querySelectorAll('.item');
+        let remainingCount = items.length;
+
+        items.forEach(item => {
+            // Показываем предметы при наведении на картину
+            item.style.display = 'block'; // Показываем предметы
+
+            item.addEventListener('click', function() {
+                const imageUrl = this.src;
+                window.open(imageUrl, '_blank');
+                this.style.display = 'none'; // Скрываем предмет после клика
+                remainingCount--;
+                document.getElementById('remaining').textContent = remainingCount;
+            });
+        });
+    </script>
+</body>
+</html>
